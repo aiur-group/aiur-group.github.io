@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="AIUR : Artificial Intelligence Using Randomness">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap-combined.min.css">
+
+  <script src="js/tabcordion.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>
+    $(function () {
+      $('.tabcordion').tabcordion()
+    });
+  </script>
+  <script>
+    $(document).on('click', 'a.resize', function () {
+      $cn = $('.container');
+      var width = 600,
+        onComplete;
+      if (!$cn.data('fullWidth')) {
+        $cn.data('fullWidth', $cn.width());
+        $cn.css('maxWidth', $cn.width());
+      } else {
+        width = $cn.data('fullWidth');
+        $cn.data('fullWidth', null);
+        onComplete = function () {
+          $cn.css('maxWidth', null);
+        };
+      }
+      $cn.animate({
+        maxWidth: width
+      }, {
+        complete: onComplete
+      });
+      $(window).trigger('resize');
+      return false;
+    });
+  </script>
+  <title>AIUR</title>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <header class="inner">
+      <a id="forkme_banner" href="https://github.com/AIUR-group/AIUR">View on GitHub</a>
+
+      <h1 id="project_title">AIUR</h1>
+      <h2 id="project_tagline">Artificial Intelligence Using Randomness</h2>
+
+      <section id="downloads">
+        <a class="zip_download_link" href="https://github.com/AIUR-group/AIUR/zipball/master">Download this project as a
+          .zip file</a>
+        <a class="tar_download_link" href="https://github.com/AIUR-group/AIUR/tarball/master">Download this project as a
+          tar.gz file</a>
+      </section>
+    </header>
+  </div>
+
+  <!-- MAIN CONTENT -->
+
+
+
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+      <h1>
+        <a name="aiur-22" class="anchor" href="#aiur-22"><span class="octicon octicon-link"></span></a>AIUR 2.2</h1>
+
+      <h2>
+        <a name="important-download-information" class="anchor" href="#important-download-information"><span
+            class="octicon octicon-link"></span></a>Important: Download information</h2>
+
+      <p>To get the lastest release version of AIUR, please click <a
+          href="https://github.com/AIUR-group/AIUR/releases/latest">here</a>.</p>
+
+      <p>To get the lastest commited code, please click either on the .tar.gz or .zip folder image above.
+        <strong>Warning</strong>: The current code on the master branch can be unstable!</p>
+
+      <h2>
+        <a name="introduction" class="anchor" href="#introduction"><span
+            class="octicon octicon-link"></span></a>Introduction</h2>
+
+      <p>AIUR (Artificial Intelligence Using Randomness) is an AI for StarCraft: Brood War.</p>
+
+      <p>The main idea is to be unpredictable by making some stochastic choices. The AI starts a game with a "mood"
+        randomly picked up among 5 moods, dictating some behaviors (aggressive, fast expand, macro-game, ...). In
+        addition, some other choices (productions, timing attacks, early aggressions, ...) are also taken under random
+        conditions.</p>
+
+      <p>Learning is an essential part of AIUR. For this, it uses persistent I/O files system to record which moods are
+        efficient against a given opponent, in order to modify the probability distribution for the mood selection. </p>
+
+      <h2>
+        <a name="whats-new-since-aiidecig-2013-aiur-21" class="anchor"
+          href="#whats-new-since-aiidecig-2013-aiur-21"><span class="octicon octicon-link"></span></a>What's new since
+        AIIDE/CIG 2013 (AIUR 2.1)?</h2>
+
+      <ul>
+        <li>New mood selection policy: AIUR uses now an epsilon-greedy algorithm.</li>
+        <li>New old mood: The DefensiveMood is selectable again at the beginning of a game (was disabled since AIUR
+          v2.0). AIUR has thus 6 selectable starting moods.</li>
+        <li> Rush mood changed into a rush DT.</li>
+        <li>Implement an off-line learning feature: You can now train AIUR against a given opponent and use that
+          learning for further games, like during tournaments.</li>
+        <li>Improve the Cannon rush pathfinding. </li>
+      </ul>
+      <h2>
+        <a name="scientific-papers" class="anchor" href="#scientific-papers"><span
+            class="octicon octicon-link"></span></a>Scientific papers</h2>
+
+      <ul>
+        <li>Santiago Ontañón, Gabriel Synnaeve, Alberto Uriarte, Florian Richoux, David Churchill and Mike Preuss. <a
+            href="http://pagesperso.lina.univ-nantes.fr/%7Erichoux-f/publications/tciaig13.pdf">A Survey of Real-Time
+            Strategy Game AI Research and Competition in StarCraft</a>, Transactions on Computational Intelligence and
+          AI in Games, IEEE, 2013.</li>
+      </ul>
+      <h2>
+        <a name="competitions-and-ladders" class="anchor" href="#competitions-and-ladders"><span
+            class="octicon octicon-link"></span></a>Competitions and ladders</h2>
+
+      <p>AIUR participates to annual AIIDE and CIG tournaments since 2011, and is currently running on <a
+          href="http://bots-stats.krasi0.com">krasi0's Broodwar bot ladder</a> and on the <a
+          href="http://www.sscaitournament.com">Student StarCraft AI Tournament</a>.</p>
+
+      <h3>
+        <a name="results" class="anchor" href="#results"><span class="octicon octicon-link"></span></a>Results:</h3>
+
+      <h4>
+        <a name="2014" class="anchor" href="#2014"><span class="octicon octicon-link"></span></a>2014</h4>
+
+      <ul>
+        <li>
+          <a href="http://webdocs.cs.ualberta.ca/%7Ecdavid/starcraftaicomp/">AIIDE 2014</a>: coming soon</li>
+        <li>
+          <a href="http://cilab.sejong.ac.kr/sc_competition/">CIG 2014</a>: coming soon </li>
+      </ul>
+      <h4>
+        <a name="2013" class="anchor" href="#2013"><span class="octicon octicon-link"></span></a>2013</h4>
+
+      <ul>
+        <li>
+          <a href="http://webdocs.cs.ualberta.ca/%7Ecdavid/starcraftaicomp/report2013.shtml">AIIDE 2013</a>: 3rd</li>
+        <li>
+          <a href="http://ls11-www.cs.uni-dortmund.de/rts-competition/starcraft-cig2013">CIG 2013</a> (no I/O systems):
+          3rd </li>
+      </ul>
+      <h4>
+        <a name="2012" class="anchor" href="#2012"><span class="octicon octicon-link"></span></a>2012</h4>
+
+      <ul>
+        <li>
+          <a href="http://webdocs.cs.ualberta.ca/%7Ecdavid/starcraftaicomp/index.shtml">AIIDE 2012</a>: 2nd</li>
+        <li>
+          <a href="http://ls11-www.cs.uni-dortmund.de/rts-competition/starcraft-cig2012">CIG 2012</a> (no I/O systems):
+          3rd</li>
+      </ul>
+      <h4>
+        <a name="2011" class="anchor" href="#2011"><span class="octicon octicon-link"></span></a>2011</h4>
+
+      <p>(no I/O systems in 2011)</p>
+
+      <ul>
+        <li>
+          <a href="http://skatgame.net/mburo/sc2011/">AIIDE 2011</a>: 3rd</li>
+        <li>
+          <a href="http://ls11-www.cs.uni-dortmund.de/rts-competition/starcraft-cig2011">CIG 2011</a>: 5th</li>
+      </ul>
+      <p>Contact: florian -dot- richoux -at- univ -dash- nantes -dot- fr</p>
+
+      <h2>
+        <a name="videos" class="anchor" href="#videos"><span class="octicon octicon-link"></span></a>Videos</h2>
+
+      <div class="tabcordion tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-target=".home" data-toggle="tab">Demo</a></li>
+          <li><a data-target=".profile" data-toggle="tab">AIUR vs Human</a></li>
+
+        </ul>
+
+        <div class="tab-content">
+          <div class="home active in tab-pane">
+            <h3>
+              <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h3>
+
+            <p>The first and so far the only demo of AIUR</p>
+
+            <p><a href="http://www.youtube.com/watch?v=sb8VtBnAK2M"><img
+                  src="http://img.youtube.com/vi/sb8VtBnAK2M/0.jpg" alt="AIUR demo"></a></p>
+
+          </div>
+          <div class="profile tab-pane">
+            <h3>
+              <a name="aiur-vs-human" class="anchor" href="#aiur-vs-human"><span
+                  class="octicon octicon-link"></span></a>AIUR
+              vs Human</h3>
+
+            <p>Two games against Bakuryu. Unfortunately, AIUR chose some cheese/daring strategies, so these games are
+              not
+              regular macro-games.</p>
+
+            <p><a href="http://www.youtube.com/watch?v=HJSjcIVvhVU"><img
+                  src="http://img.youtube.com/vi/HJSjcIVvhVU/0.jpg" alt="Game 1"></a></p>
+
+            <p><a href="http://www.youtube.com/watch?v=ehDDTT0wsC4"><img
+                  src="http://img.youtube.com/vi/ehDDTT0wsC4/0.jpg" alt="Game 2"></a></p>
+          </div>
+
+        </div>
+      </div>
+
+
+    </section>
+  </div>
+
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="outer">
+    <footer class="inner">
+      <p class="copyright">AIUR maintained by <a href="https://github.com/AIUR-group">AIUR-group</a></p>
+      <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <p>The page is made with the <a href="https://aexmachina.github.io/tabcordion/">js app of aexmachina</a></p>
+    </footer>
+  </div>
+
+
+
+</body>
+
+</html>
